@@ -651,7 +651,7 @@ in
             prefix = "/sysroot";
           }) rootPools);
           targets.zfs-import.wantedBy = [ "zfs.target" ];
-          targets.zfs.wantedBy = [ "initrd.target" ];
+          targets.zfs.wantedBy = [ "initrd-fs.target" ];
           extraBin = {
             zpool = "${cfgZfs.package}/sbin/zpool";
             zfs = "${cfgZfs.package}/sbin/zfs";
