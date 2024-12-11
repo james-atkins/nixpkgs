@@ -117,7 +117,7 @@ stdenvNoCC.mkDerivation (self: {
       name = "matlab";
       exec = "matlab -desktop -useStartupFolderPref %F";
       comment = "MATLAB is a programming and numeric computing platform for engineering and scientific applications.";
-      desktopName = "MATLAB ${self.matlab-download.release or self.version}";
+      desktopName = "MATLAB ${self.src.matlab-download.release or self.version}";
       icon = "matlab";
       categories = [
         "Development"
