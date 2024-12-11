@@ -61,11 +61,15 @@ stdenvNoCC.mkDerivation (self: {
         dontFixup = true;
 
         installPhase = ''
+          runHook preInstall
+
           # As mpm is bubblewrapped, it cannot write to $out directly
           # https://github.com/NixOS/nixpkgs/issues/239017
           ${lib.getExe matlab-package-manager} install --source "$src" --destination matlab --products "''${products[@]}"
           mv matlab $out
           mkdir -p $out/licenses
+
+          runHook postInstall
         '';
       }
       // unpack
