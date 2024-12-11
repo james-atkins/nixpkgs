@@ -65,7 +65,7 @@ stdenvNoCC.mkDerivation (self: {
           # https://github.com/NixOS/nixpkgs/issues/239017
           ${lib.getExe matlab-package-manager} install --source "$src" --destination matlab --products "''${products[@]}"
           mv matlab $out
-          ln -s /etc/matlab $out/licenses
+          mkdir -p $out/licenses
         '';
       }
       // unpack
@@ -139,7 +139,7 @@ stdenvNoCC.mkDerivation (self: {
     '';
 
     extraBwrapArgs = [
-      "--bind $HOME/.matlab/licenses /etc/matlab"
+      "--bind $HOME/.matlab/licenses ${self.unwrapped}/licenses"
     ];
 
     targetPkgs =
