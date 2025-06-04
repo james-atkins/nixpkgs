@@ -7,7 +7,7 @@
 
 let
   pname = "mpm";
-  version = "2024.4";
+  version = "2025.1";
 
   mpm-bin = stdenvNoCC.mkDerivation {
     inherit pname version;
@@ -15,7 +15,7 @@ let
     src = fetchurl {
       # https://www.mathworks.com/mpm/glnxa64/mpm redirects to here
       url = "https://ssd.mathworks.com/supportfiles/downloads/mpm/${version}/glnxa64/mpm";
-      hash = "sha256-KEdIOGpvFJX7xfZ46lkXZAWFOQe13GtB4CmMkf+yZrY=";
+      hash = "sha256-BRKBXsLAW1qZ0+kt4Uxrlu23btfQu1xOZKhzuGjkCi8=";
       executable = true;
     };
     dontUnpack = true;
