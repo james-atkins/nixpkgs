@@ -106,23 +106,13 @@ in
         message = "Need to set both authUsername and authPasswordFile for microsocks";
       }
     ];
-    users = {
-      users = lib.mkIf (cfg.user == "microsocks") {
-        microsocks = {
-          group = cfg.group;
-          isSystemUser = true;
-        };
-      };
-      groups = lib.mkIf (cfg.group == "microsocks") {
-        microsocks = { };
-      };
-    };
     systemd.services.microsocks = {
       enable = true;
       description = "a tiny socks server";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
+        DynamicUser = true;
         User = cfg.user;
         Group = cfg.group;
         Restart = "on-failure";
